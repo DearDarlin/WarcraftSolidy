@@ -1,0 +1,176 @@
+{
+	"compiler": {
+		"version": "0.8.34+commit.80d5c536"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "playerAddress",
+						"type": "address"
+					}
+				],
+				"name": "getPlayer",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "registered",
+						"type": "bool"
+					},
+					{
+						"internalType": "enum OnChainWarcraft.Fraction",
+						"name": "fraction",
+						"type": "uint8"
+					},
+					{
+						"internalType": "uint256",
+						"name": "wood",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "stone",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "gold",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "warriors",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "sawmillLevel",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "mineLevel",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "barracksLevel",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"name": "players",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "registered",
+						"type": "bool"
+					},
+					{
+						"internalType": "enum OnChainWarcraft.Fraction",
+						"name": "fraction",
+						"type": "uint8"
+					},
+					{
+						"internalType": "uint256",
+						"name": "wood",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "stone",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "gold",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "warriors",
+						"type": "uint256"
+					},
+					{
+						"components": [
+							{
+								"internalType": "uint256",
+								"name": "sawmillLevel",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "mineLevel",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "barracksLevel",
+								"type": "uint256"
+							}
+						],
+						"internalType": "struct OnChainWarcraft.Buildings",
+						"name": "buildings",
+						"type": "tuple"
+					},
+					{
+						"internalType": "uint256",
+						"name": "lastClaimTime",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/Warcraft.sol": "OnChainWarcraft"
+		},
+		"evmVersion": "osaka",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"contracts/Warcraft.sol": {
+			"keccak256": "0x3024d89cc0c69845da4e2d1e945d0800da28159c2cea1c30f281aa11215b806c",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://8ad192e0ed287332cfa3ff69f0642f442bea35071245b189d8a7d3540dd046bb",
+				"dweb:/ipfs/QmWbuz1qEgYV3tVexbVMu91o1DesgfwSKQ4BcJSm2VD5Zb"
+			]
+		}
+	},
+	"version": 1
+}
