@@ -6,6 +6,64 @@
 	"output": {
 		"abi": [
 			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "player",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "enum OnChainWarcraft.Fraction",
+						"name": "fraction",
+						"type": "uint8"
+					}
+				],
+				"name": "PlayerRegistered",
+				"type": "event"
+			},
+			{
+				"inputs": [],
+				"name": "INITIAL_GOLD",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "INITIAL_STONE",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "INITIAL_WOOD",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
 				"inputs": [
 					{
 						"internalType": "address",
@@ -134,6 +192,19 @@
 				],
 				"stateMutability": "view",
 				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "enum OnChainWarcraft.Fraction",
+						"name": "_fraction",
+						"type": "uint8"
+					}
+				],
+				"name": "register",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
 			}
 		],
 		"devdoc": {
@@ -164,11 +235,11 @@
 	},
 	"sources": {
 		"contracts/Warcraft.sol": {
-			"keccak256": "0x3024d89cc0c69845da4e2d1e945d0800da28159c2cea1c30f281aa11215b806c",
+			"keccak256": "0x943ae182f0b3638ca92b622f3c4229128b0fe30f271cc61c548d36dbd4d8d176",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://8ad192e0ed287332cfa3ff69f0642f442bea35071245b189d8a7d3540dd046bb",
-				"dweb:/ipfs/QmWbuz1qEgYV3tVexbVMu91o1DesgfwSKQ4BcJSm2VD5Zb"
+				"bzz-raw://8fabb0d3aae79565a874bff3ace1eeb223866d846fbdd3e5d0b17c8f1904ebf5",
+				"dweb:/ipfs/Qma9RNEQWCYo72x8e2kCxe6GoVbnRcCbMgywCma7yUoeAg"
 			]
 		}
 	},

@@ -23,10 +23,36 @@ contract OnChainWarcraft {
 
     mapping(address => Player) public players;
 
+    uint256 public constant INITIAL_WOOD = 100;
+    uint256 public constant INITIAL_STONE = 100;
+    uint256 public constant INITIAL_GOLD = 100;
+
+    event PlayerRegistered(address indexed player, Fraction fraction);
+
 
     modifier onlyRegistered(){
         require(players[msg.sender].registered, "You are not registered!");
         _;
+    }
+
+    function register(Fraction _fraction) external {
+        require(!players[msg.sender].registered, "Already registered");
+
+        players[msg.sender] = Player({
+            registered: true,
+            fraction: _fraction,
+            wood: INITIAL_WOOD,
+            stone: INITIAL_STONE,
+            gold: INITIAL_GOLD,
+            warriors: 0,
+            buildings: Buildings({
+                sawmillLevel: 1, 
+                mineLevel: 1, 
+                barracksLevel: 1}),
+            lastClaimTime: block.timestamp
+        });
+
+        emit PlayerRegistered(msg.sender, _fraction);
     }
 
 
