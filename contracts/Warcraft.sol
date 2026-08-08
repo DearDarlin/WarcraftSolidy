@@ -56,6 +56,30 @@ contract OnChainWarcraft {
     }
 
 
+    
+
+    function getAllianceDiscount(Fraction _fraction) public pure returns (uint256){
+        if (_fraction == Fraction.Alliance){
+            return 80;
+        }
+        return 100;
+    }
+
+    function getUndeadBonus(Fraction _fraction) public pure returns (uint256){
+        if (_fraction == Fraction.Undead){
+            return 120;
+        }
+        return 100;
+    }
+
+    function getHordeBonus(Fraction _fraction) public pure returns (uint256){
+        if (_fraction == Fraction.Horde){
+            return 120;
+        }
+        return 100;
+    }
+
+
     function getPlayer(address playerAddress) external view  returns(
         bool registered,
         Fraction fraction,
