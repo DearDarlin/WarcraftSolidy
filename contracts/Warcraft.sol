@@ -27,7 +27,11 @@ contract OnChainWarcraft {
     uint256 public constant INITIAL_STONE = 100;
     uint256 public constant INITIAL_GOLD = 100;
 
+    uint256 public constant WOOD_1_SEC = 1;
+    uint256 public constant GOLD_1_SEC = 1;
+
     event PlayerRegistered(address indexed player, Fraction fraction);
+    event ResourceAsk(address indexed player, uint256 getwood, uint256 getgold);
 
 
     modifier onlyRegistered(){
@@ -77,6 +81,21 @@ contract OnChainWarcraft {
             return 120;
         }
         return 100;
+    }
+
+    function getResources() external onlyRegistered{
+        Player storage p = players[msg.sender];
+        uint256 time = block.timestamp - p.lastClaimTime;
+        uint256 bonus = getUndeadBonus(p.fraction);
+
+        uint256 getwood = (time*WOOD_1_SEC*p.buildings.sawmillLevel*bonus)/100;
+        uint256 getgold = (time*GOLD_1_SEC*p.buildings.mineLevel*bonus)/100;
+
+        p.wood += getwood;
+        p.gold += getgold;
+        p.lastClaimTime = block.timestamp;
+
+        emit ResourceAsk(msg.sender, getwood, getgold);
     }
 
 
