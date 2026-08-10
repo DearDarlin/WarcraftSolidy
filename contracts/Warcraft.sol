@@ -30,6 +30,8 @@ contract OnChainWarcraft {
     uint256 public constant WOOD_1_SEC = 1;
     uint256 public constant GOLD_1_SEC = 1;
 
+    uint256 public constant COST = 50;
+
     event PlayerRegistered(address indexed player, Fraction fraction);
     event ResourceAsk(address indexed player, uint256 getwood, uint256 getgold);
 
@@ -97,6 +99,13 @@ contract OnChainWarcraft {
 
         emit ResourceAsk(msg.sender, getwood, getgold);
     }
+
+    function costUpgreade(address playerAddress, uint256 currentLevel)public view returns (uint256){
+        uint256 base = COST * currentLevel;
+        uint256 discount = getAllianceDiscount(players[playerAddress].fraction);
+        return (base *discount)/100;
+    }
+
 
 
     function getPlayer(address playerAddress) external view  returns(
