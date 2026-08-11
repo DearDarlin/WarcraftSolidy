@@ -85,7 +85,7 @@ contract OnChainWarcraft {
         return 100;
     }
 
-    function getResources() external onlyRegistered{
+    function claimResources() external onlyRegistered{
         Player storage p = players[msg.sender];
         uint256 time = block.timestamp - p.lastClaimTime;
         uint256 bonus = getUndeadBonus(p.fraction);
@@ -104,6 +104,26 @@ contract OnChainWarcraft {
         uint256 base = COST * currentLevel;
         uint256 discount = getAllianceDiscount(players[playerAddress].fraction);
         return (base *discount)/100;
+    }
+
+    function upgradeBuildings(uint256 buildingType) external onlyRegistered{
+        require(buildingType <= 2, "Invalid building type!!!");
+        Player storage p = players[msg.sender];
+
+        uint256 currentLevel;
+        if (buildingType == 0){
+            currentLevel =p.buildings.sawmillLevel;
+        }
+        else if (buildingType == 1){
+            currentLevel =p.buildings.mineLevel;
+        }
+        else{
+            currentLevel =p.buildings.barracksLevel;
+        }
+
+        uint256 cost = costUpgreade(msg.sender, currentLevel);
+        require(p.gold >= cost, "You don`t have enought gold!");
+        p.gold -= cost;
     }
 
 
