@@ -34,7 +34,7 @@ contract OnChainWarcraft {
 
     event PlayerRegistered(address indexed player, Fraction fraction);
     event ResourceAsk(address indexed player, uint256 getwood, uint256 getgold);
-
+    event upgradeBuilding(address indexed player, string buildingType, uint256 newLevel);
 
     modifier onlyRegistered(){
         require(players[msg.sender].registered, "You are not registered!");
@@ -124,6 +124,22 @@ contract OnChainWarcraft {
         uint256 cost = costUpgreade(msg.sender, currentLevel);
         require(p.gold >= cost, "You don`t have enought gold!");
         p.gold -= cost;
+
+        string memory buildName;
+        if (buildingType == 0){
+            p.buildings.sawmillLevel += 1;
+            buildName = "sawmill";
+        }
+        else if (buildingType == 1){
+            p.buildings.mineLevel += 1;
+            buildName = "mine";
+        }
+        else {
+            p.buildings.barracksLevel += 1;
+            buildName = "barracks";
+        }
+
+        emit upgradeBuilding(msg.sender, buildName, currentLevel + 1 );
     }
 
 
