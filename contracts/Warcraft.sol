@@ -32,9 +32,12 @@ contract OnChainWarcraft {
 
     uint256 public constant COST = 50;
 
+    uint256 public constant WARRIOR = 20;
+
     event PlayerRegistered(address indexed player, Fraction fraction);
     event ResourceAsk(address indexed player, uint256 getwood, uint256 getgold);
     event upgradeBuilding(address indexed player, string buildingType, uint256 newLevel);
+    event WarriorHire(address indexed player, uint256 amount, uint256 allWarriors);
 
     modifier onlyRegistered(){
         require(players[msg.sender].registered, "You are not registered!");
@@ -140,6 +143,19 @@ contract OnChainWarcraft {
         }
 
         emit upgradeBuilding(msg.sender, buildName, currentLevel + 1 );
+    }
+
+    function warriors(uint256 amount) external onlyRegistered{
+        require(amount > 0, "You can`t hire 0 warriors!!!");
+
+        Player storage p = players[msg.sender];
+        uint256 total = amount * WARRIOR;
+        require(p.gold >= total, "Not enought gold!");
+
+        p.gold -= total;
+        p.warriors += amount;
+
+        emit WarriorHire(msg.sender, amount, p.warriors);
     }
 
 
