@@ -145,7 +145,7 @@ contract OnChainWarcraft {
         emit upgradeBuilding(msg.sender, buildName, currentLevel + 1 );
     }
 
-    function warriors(uint256 amount) external onlyRegistered{
+    function warriorsHire(uint256 amount) external onlyRegistered{
         require(amount > 0, "You can`t hire 0 warriors!!!");
 
         Player storage p = players[msg.sender];
@@ -156,6 +156,13 @@ contract OnChainWarcraft {
         p.warriors += amount;
 
         emit WarriorHire(msg.sender, amount, p.warriors);
+    }
+
+    function attack(address enemy) external onlyRegistered{
+        require(players[enemy].registered, "Enemy not registered!");
+        require(enemy != msg.sender, "You can`t attack youself!");
+
+        
     }
 
 
