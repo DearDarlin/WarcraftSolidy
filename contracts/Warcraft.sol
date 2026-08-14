@@ -38,6 +38,7 @@ contract OnChainWarcraft {
     event ResourceAsk(address indexed player, uint256 getwood, uint256 getgold);
     event upgradeBuilding(address indexed player, string buildingType, uint256 newLevel);
     event WarriorHire(address indexed player, uint256 amount, uint256 allWarriors);
+    event AttackRegim(address indexed forward, address indexed protector);
 
     modifier onlyRegistered(){
         require(players[msg.sender].registered, "You are not registered!");
@@ -161,6 +162,15 @@ contract OnChainWarcraft {
     function attack(address enemy) external onlyRegistered{
         require(players[enemy].registered, "Enemy not registered!");
         require(enemy != msg.sender, "You can`t attack youself!");
+
+        Player storage attacked = players[msg.sender];
+        require(attacked.warriors>0, "You don`t have army!");
+
+        Player storage protector = players[enemy];
+
+        emit AttackRegim(msg.sender, enemy);
+
+
 
         
     }
