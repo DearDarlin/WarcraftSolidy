@@ -170,6 +170,10 @@ contract OnChainWarcraft {
 
         emit AttackRegim(msg.sender, enemy);
 
+        uint256 power = (attacked.warriors*getUndeadBonus(attacked.fraction))/100;
+        uint256 casernBonus = (protector.buildings.casernLevel + 100 ) * 10;
+
+
 
 
         
