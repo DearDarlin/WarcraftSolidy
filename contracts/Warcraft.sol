@@ -39,6 +39,7 @@ contract OnChainWarcraft {
     event upgradeBuilding(address indexed player, string buildingType, uint256 newLevel);
     event WarriorHire(address indexed player, uint256 amount, uint256 allWarriors);
     event AttackRegim(address indexed forward, address indexed protector);
+    event FightResult(address indexed attacked, address indexed protector, address win, uint256 nailStolen);
 
     modifier onlyRegistered(){
         require(players[msg.sender].registered, "You are not registered!");
@@ -171,12 +172,31 @@ contract OnChainWarcraft {
         emit AttackRegim(msg.sender, enemy);
 
         uint256 power = (attacked.warriors*getUndeadBonus(attacked.fraction))/100;
-        uint256 casernBonus = (protector.buildings.casernLevel + 100 ) * 10;
+        uint256 casernBonus = (protector.buildings.barracksLevel + 100 ) * 10;
+        uint256 securityPower = (protector.warriors * casernBonus * getUndeadBonus(protector.fraction))/100/100;
 
+        address win;
+        uint256 nailGold;
 
+        if (power > securityPower){
+            win = msg.sender;
+            nailGold = protector.gold / 5;
+            protector.gold -= nailGold;
+            attacked.gold += nailGold;
+            attacked.warriors = attacked.warriors /2;
+            protector.warriors = 0;
+        }
+        else{
+            win = enemy;
+            nailGold = attacked.gold /5;
+            attacked.gold -= nailGold;
+            protector.gold += nailGold;
+            protector.warriors = protector.warriors /2;
+            attacked.warriors = 0;
+        }
+        emit FightResult(msg.sender, enemy, win, nailGold);
 
-
-        
+ 
     }
 
 
